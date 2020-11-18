@@ -1,0 +1,1 @@
+char *strrchr(const char *str, int c) 在参数 str 所指向的字符串中搜索最后一次出现字符 c

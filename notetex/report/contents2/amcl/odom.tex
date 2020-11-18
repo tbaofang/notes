@@ -1,0 +1,90 @@
+\section{odometry}
+
+$\alpha_1 ~ \alpha_4$是机器人的误差参数，
+一个机器人的里程计越不精确，这些参数越大。
+
+
+
+在计算时间$\Delta t$内，控制$u_t = (\nu, \omega)$ 作用下将机器人位姿从$x_{t-1} = (x, y, z)^T$ 
+变成位姿$x_t = (x^\prime, y^\prime, \theta^\prime)^T$ 的概率$p(x_t | u_t, x_{t-1})$ 
+
+为了保持状态空间比较小，通常把里程计数据认为是控制信号。
+
+里程计运动模型---
+总之，用距离测量代替控制， 距离是通过编码信息得到的。
+
+最后两点，在后面的里程计运动模型中没有出现控制信息，都用了里程计的测量读数代替了，
+
+
+这里根据里程计的测量结果得到机器人的三段动作的估计值。
+之前也提到过，由于机器人运动过程中存在这噪声，所以测量值很可能不是机器人的真实值。
+这就需要对运动过程中里程计的噪声进行估计，以此来得到能覆盖机器人真实值的区域。
+并且可以用一定数量的粒子来表征这个区域。
+
+简而言之，这种方法计算得到的机器人位姿估计我是不全相信的，我要获得这个位姿临近的值看看能否更好的满足观测。
+
+% \begin{algorithm}
+  % \caption{Algorithm sample_motion_model_odometry$(u_t, x_{t-1})$}
+
+% \end}{algorithm}
+
+\begin{algorithm}[htb]  
+  % \caption{Title}  
+  \label{alg:Framwork}  
+  \begin{algorithmic}  
+    \Require  
+    xxxxxxxx 
+    \Ensure  
+   xxxxxxxxx
+      \For{xyz}
+      \If {yyyyyyy}  
+      \State asdfghjkl;
+      \Else
+      \State qwertyuiop;
+       \If{zzzzzzz}
+             \State zxcvbnm;
+       \EndIf
+      \EndIf
+   \EndFor  
+    \For {abc }  
+      \State qazwsxedc; 
+    \EndFor
+  \end{algorithmic}  
+\end{algorithm}
+
+
+\begin{algorithm} 
+  % \caption{UKF\_MCL算法}
+  \begin{algorithmic}[1]
+      \State Algorithm MCL$(X_{t-1}, u_t, z_t, m)$:
+      \State $\bar{X}_t = X_t = \emptyset$
+      \For{$m=1$ \text{to} $M$ }
+          \State $\bar{X}_t^{[m]} = sample\_motion\_model(u_t, x_{t-1}^{[m]})$ 
+          \State $W_t^{[m]} = measurement\_model(z_t, x_t ^{[m]}, m)$
+          \State $\bar{X}_t = \bar{X}_t +\left \langle x_t ^{[m]}, w_t ^{[m]} \right \rangle $
+      \EndFor
+
+          \For{$m=1$ \text{to} $M$}
+              \State draw i with probability $\propto w_t ^{[i]}$ 
+              \State $x_t ^{[i]} $ to $X_t$ 
+          \EndFor
+
+          \State return $X_t$
+  \end{algorithmic}
+\end{algorithm}
+
+
+\subsection{laser}
+
+laser\_max\_beams: 减小计算量，测距扫描中相邻波束往往不是独立的可以减小噪声影响，太小也会造成信息量少定位不准.
+
+
+红点为计算得到的障碍点，在该地图中找到对应的最近的障碍物，计算其测量概率。
+也就是说我们只考虑了传感器给出的位置点，并判断该位置为障碍物的概率大小。
+对于上图中的每个点测量为障碍物的概率如下图所示，越亮的地方检测为障碍物的概率越大。该图便称为似然域
+
+第七行：寻找最近的障碍物对应的距离dist；
+
+map\_cspance:
+occ\_dist参数。该参数是指地图中的任意位置与离其最近的障碍物的距离.
+并且该优先队列由于运算符重定义其排列顺序将按照其像素点对应的occ\_dist值由小到大排列

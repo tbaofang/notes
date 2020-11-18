@@ -1,0 +1,67 @@
+
+
+\begin{frame}[fragile]
+  \frametitle{采样算法}
+
+  % \begin{algorithm}[htb]  
+    % \caption{Title}  
+    % \label{alg:Framwork}  
+    % \begin{algorithmic}  
+    %   \Require  
+    %   xxxxxxxx 
+    %   \Ensure  
+    %  xxxxxxxxx
+    %     \For{xyz}
+    %     \If {yyyyyyy}  
+    %     \State asdfghjkl;
+    %     \Else
+    %     \State qwertyuiop;
+    %      \If{zzzzzzz}
+    %            \State zxcvbnm;
+    %      \EndIf
+    %     \EndIf
+    %  \EndFor  
+    %   \For {abc }  
+    %     \State qazwsxedc; 
+    %   \EndFor
+    % \end{algorithmic}  
+  % \end{algorithm}
+
+  % \begin{algorithm} 
+    % \caption{UKF\_MCL算法}
+    \begin{algorithmic}[1]
+        \State Algorithm MCL$(X_{t-1}, u_t, z_t, m)$:
+        \State $\bar{X}_t = X_t = \emptyset$
+        \For{$m=1$ \text{to} $M$ }
+            \State $\bar{X}_t^{[m]} = sample\_motion\_model(u_t, x_{t-1}^{[m]})$ 
+            \State $W_t^{[m]} = measurement\_model(z_t, x_t ^{[m]}, m)$
+            \State $\bar{X}_t = \bar{X}_t +\left \langle x_t ^{[m]}, w_t ^{[m]} \right \rangle $
+        \EndFor
+  
+            \For{$m=1$ \text{to} $M$}
+                \State draw i with probability $\propto w_t ^{[i]}$ 
+                \State $x_t ^{[i]} $ to $X_t$ 
+            \EndFor
+  
+            \State return $X_t$
+    \end{algorithmic}
+  % \end{algorithm}
+
+\end{frame}
+
+\end{frame}
+
+% \begin{frame}
+  % \frametitle{Box-Muller变换}
+
+  % Box-Muller变换是通过服从均匀分布的随机变量，来构建服从高斯分布的随机变量的一种方法。
+  % 具体的描述为：选取两个服从[0,1]上均匀分布的随机变$x_1$， $x_2$， $y_1$， $y_2$满足
+
+  % \begin{equation}
+  %   \begin{cases}
+  %     3x + 5y + z \\
+  %     7x - 2y + 4
+  %   \end{cases}
+  % \end{equation}
+
+\end{frame}

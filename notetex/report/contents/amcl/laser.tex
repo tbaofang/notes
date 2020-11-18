@@ -1,0 +1,197 @@
+\section{AMCL中laser的数据处理}
+
+% \subsection{}
+
+\begin{frame}
+  \frametitle{AMCL中laser部分参数配置}
+  % 
+  
+  \begin{table}[htbp!]
+    \centering
+    % \caption{}
+    % \setlength{\tabcolsep}{2mm}{
+    \resizebox{\textwidth}{25mm}{
+    \begin{tabular}{c|c|c}
+      % \begin{tabular}{p{2cm}|p{2cm}|p{5cm}}
+      \toprule[1pt]
+      参数	& 默认值 & 描述  \\
+      \toprule[1pt]
+      laser\_min\_range	& -1.0 & 考虑的最小扫描范围；参数设置为 -1.0时，将会使用激光上报的最小扫描范围 \\
+ 	    \hline
+       laser\_max\_range	&  -1.0 & 考虑的最大扫描范围；参数设置为-1.0时，将会使用激光上报的最大扫描范围 \\
+      \hline
+      laser\_max\_beams	&  180 & 更新滤波器时，每次扫描中多少个光束被使用 \\
+      \hline
+      laser\_model\_type	&  likehood\_field & 模型使用，可以是beam, likehood\_field, likehood\_field\_prob \\
+      \hline
+      laser\_z\_hit	&  0.95 & 测量点到对应物体之间的距离的误差所占最终计算得到的距离的权重 \\
+      \hline
+      laser\_z\_rand	&  0.05 & 随机噪声的权重 \\
+      \hline
+      laser\_sigma\_hit	&  0.2 & 被用在模型的z\_hit部分的高斯模型的标准差 \\
+      \hline
+      laser\_likelihood\_max\_dist	&  0.325 & 似然域预处理设置的最大距离 \\
+ 	    \bottomrule[1pt]
+    \end{tabular}}
+  \end{table}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{激光的波束模型---简介}
+  \begin{itemize}
+    \item 激光传感器测量到附近物体的距离，沿着一个波束测量距离。
+    \item 波束模型采用四类测量误差，包括：{\color{red}局部测量噪声}、{\color{red}意外对象引起的误差}、{\color{red}未检测到对象引起的误差}
+    和{\color{red}随机意外噪声}。
+    \item 波束模型期望概率$p(z_t | x_t, m)$是四类误差分布的混合，每种分布都与一个特定类型的误差有关。
+  \end{itemize}
+  
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{激光的波束模型---局部测量噪声}
+  
+  \begin{itemize}
+    \item 在一个理想世界中，测距仪总是测量位于其测量领域内的最近物体的正确距离。
+    \item 现实中，{\color{red}传感器存在有限分辨率及大气对测量信号等影响因素}。
+    \item 这个测量噪声通常由一个窄的均值为$z_t^{k*}$、标准偏差为$\sigma_{hit}$的高斯分布建模，如式\ref{eq:laser_celiang}所示。
+  \end{itemize}
+
+  \begin{equation}
+    p_{short}(z_t^k | x_t, m) = 
+    \begin{cases}
+      \eta \mathcal{N}(z_t^k; z_t^{k*}, \sigma_{hit}^2) \quad  0 \leq z_t^k \leq z_{max}\\
+      0 \qquad \qquad \qquad \quad others
+    \end{cases}
+    \label{eq:laser_celiang}
+  \end{equation}
+  
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{激光的波束模型---意外对象}
+  \begin{itemize}
+    \item 移动机器人的环境是动态的，而地图$m$是静态的。
+    \item {\color{red}典型的移动对象就是与机器人共享操作空间的人}。
+    \item 如果将这类对象作为传感器的噪声来处理，未建模对象具有这样的特性，即它们会导致比$z_t^{k*}$更短而不是更长的距离，并且检测到未建模对象的
+          可能性随着距离增大而较少。
+    \item 这种情况下距离测量的概率在数学上用一个指数分布来描述，如式\ref{eq:laser_yiwai}所示。
+  \end{itemize}
+
+  \begin{equation}
+    p_{short}(z_t^k | x_t, m) = 
+    \begin{cases}
+      \eta \lambda_{short} e^{-\lambda_{short} z_t^k} \quad  0 \leq z_t^k \leq z_t^{k*}\\
+      0 \qquad \qquad \qquad \quad others
+    \end{cases}
+    \label{eq:laser_yiwai}
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{激光的波束模型---检测失败}
+  \begin{itemize}
+    \item 有时环境中的噪声会被完全忽略，例如：{\color{red}激光测距仪检测到黑色吸光的对象时，或者某些激光系统在明媚阳光下测量物体时，会发生检测失败}。
+    \item 传感器检测失败的典型结果是最大距离问题：传感器返回它的最大允许值$z_{max}$
+    \item 用一个以$z_{max}$为中心的点群分布来建立这种情况的模型，如式\ref{eq:laser_jiance}所示。
+  \end{itemize}
+
+  \begin{equation}
+    p_{max}(z_t^k | x_t, m) = I(z_t^{k}=z_{max}) = 
+    \begin{cases}
+      1 \quad  z_t^{k} = z_{max}\\
+      0 \qquad  others
+    \end{cases}
+    \label{eq:laser_jiance}
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{激光的波束模型---随机检测}
+  \begin{itemize}
+    \item 测距仪偶尔会产生完全无法解释的测量，例如，{\color{red}当它们受到不同传感器之间的串扰时}。
+    \item 对于这样的测量，将使用一个分布在完整传感器测量范围$[0, z_{max}]$的均匀分布来建立模型， 如式\ref{eq:laser_suiji}所示。
+  \end{itemize}
+
+  \begin{equation}
+    p_{rand}(z_t^k | x_t, m) = 
+    \begin{cases}
+      \frac{1}{z_{max}} \quad  0 \leq z_t^k \leq z_{max}\\
+      0 \qquad  others
+    \end{cases}
+    \label{eq:laser_suiji}
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{激光的波束模型---误差混合}
+  \begin{itemize}
+    \item 以上4种误差分布通过四个参数$z_{hit}$、$z_{short}$、$z_{max}$、$z_{rand}$进行加权平均混合，
+          并且$z_{hit} + z_{short} + z_{max} + z_{rand} = 1$，如式\ref{eq:laser_hunhe}所示。
+  \end{itemize}
+
+  \begin{equation}
+    p(z_t^k | x_t, m) = 
+    \begin{pmatrix}
+      z_{hit} \\ z_{short} \\ z_{max} \\ z_{rand}
+    \end{pmatrix}
+    \cdot 
+    \begin{pmatrix}
+      p_{hit}(z_t^k | x_t, m) \\p_{short}(z_t^k | x_t, m) \\ p_{max}(z_t^k | x_t, m) \\ p_{rand}(z_t^k | x_t, m)
+    \end{pmatrix}
+    \label{eq:laser_hunhe}
+  \end{equation}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{激光的波束模型算法}
+  % \begin{center}
+  % \begin{block}
+  %   \begin{algorithmic}[1]
+  %     \State Algorithm beam\_modle$(z_t, x_t, m)$:
+  %     \State q = 1
+  %   \end{algorithmic}
+  % \end{block}
+  % \end{center}
+
+  \begin{columns}%0.6 0.4表示相对比例
+    \column{0.1\textwidth}%<1->
+    \column{0.8\textwidth}%<1->
+  \begin{block}
+    
+    \begin{algorithmic}[1]
+        \State Algorithm beam\_modle$(z_t, x_t, m)$:
+        \State $q = 1$
+        \For{$k=1$ \text{to} $K$ }
+        \State compute $z_t^{k*}$ for the measurement $z_k^k$ using ray casting 
+        \State $p = z_{hit} \cdot p_{hit}(z_t^k|x_t, m) + z_{short} \cdot p_{short}(z_t^k|x_t, m) + $
+        \Statex     \qquad\quad       $z_{max} \cdot p_{max}(z_t^k|x_t, m) + z_{rand} \cdot p_{rand}(z_t^k|x_t, m)$
+        \State $q = q \cdot p$
+        \EndFor
+
+        \State return $q$
+
+    \end{algorithmic}
+  \end{block}
+  \column{0.1\textwidth}%<1->
+\end{columns}
+\end{frame}
+
+\begin{comment}
+1.爬山算法是一种简单的贪心搜索算法，该算法每次从当前解的临近解空间中选择一个最优解作为当前解，直到达到一个局部最优解。
+  爬山算法实现很简单，其主要缺点是会陷入局部最优解
+\end{comment}
+
+\begin{frame}
+  \frametitle{激光的波束模型---存在不足}
+  \begin{enumerate}
+    \item 基于波束的模型表现出{\color{red}缺乏光滑性},在有许多小障碍物的混乱环境中,测量模型$p(x_t^k|x_t, m)$会在$x_t$处高度不连续。
+    缺乏光滑性有两个后果:一是任何近似置信度表示法都存在错过正确状态的风险,因为临近的状态可能具有截然不同的后验似然。
+    二是不光滑的模型中存在大量的局部极值,用爬坡算法找到的解很可能是局部最优。
+    \item 基于波束的模型存在{\color{red}计算量大问题},对传感器每一个测量$z_t^k$的评估$p(z_t^k|x_t, m)$涉及
+    四类噪声的分布估计%射线投影%
+    ,这需要很大的计算量。
+  \end{enumerate}
+\end{frame}

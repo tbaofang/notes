@@ -1,0 +1,112 @@
+
+\section{低成本导航方案}
+
+\begin{comment}
+\end{comment}
+\begin{frame}
+\frametitle{建图 \hfill \includegraphics[height=0.5cm]{logo.png}}
+\begin{columns}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 前端:使用最近一段时间传感器数据进行子图构建,对算力的需求较小,但存在累积误差.
+		\item 后端:引入闭环检测方法,通过对整个地图和历史轨迹的优化,解决累积误差的问题.由于数据量和计算量都很大,
+		使用了分支定界的方式进行优化,一定程度上减少了算力的需求.
+		\vspace{0.2cm}
+		\item 
+	\end{itemize}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 滤波(RBPF)方法与图优化方法建图比较:
+		\begin{itemize}
+			\item RBPF方法一般需要大量的粒子来获取较好的建图效果,并且每个粒子都会包含地图信息,计算量会随场景增大成指数增长,从而不适用于大场景的建图.其次粒子重采样过程会引起粒子耗散问题.图优化方法不会随建图场景增大计算量呈指数递增问题,从而更适合大规模场景中的建图.
+			\item RBPF方法无法有效消除累计误差问题,而图优化方法通过闭环检测能够有效消除运行过程中的累计误差.
+		\end{itemize}
+		\vspace{0.5cm}
+		\item
+	\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{comment}
+\end{comment}
+\begin{frame}
+\frametitle{costmap \hfill \includegraphics[height=0.5cm]{logo.png}}
+\begin{columns}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item costmap为全局规划器和局部规划器提供代价地图.
+		\vspace{0.2cm}
+		\item costmap通过多个图层描述环境信息:
+		\begin{itemize}
+			\item 静态地图层(static map layer):描述的是导航的地图信息.
+			\item 障碍物层(obstacle layer):记录了环境中的障碍物.
+			\item 膨胀层(inflation layer):根据用户指定的参数和机器人的尺寸将障碍物的占用删格区域放大一部分，以防止碰撞.
+		\end{itemize}
+	\end{itemize}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 
+		\vspace{0.5cm}
+		\item
+	\end{itemize}
+\end{columns}
+\end{frame}
+
+
+\begin{comment}
+\end{comment}
+\begin{frame}
+\frametitle{全局规划器 \hfill \includegraphics[height=0.5cm]{logo.png}}
+\begin{columns}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 采用基于启发式搜索策略A*搜索算法作为全局规划算法.启发式函数h(n)告诉A*从任何结点n到目标结点的最小代价评估值.(欧几里得距离,曼哈顿距离)
+		\vspace{0.2cm}
+		\item 实现过程:
+		\begin{itemize}
+			\item 从机器人的起始位置开始,逐步向周围节点扩展,直到目标点.
+			\item 从目标点开始采样梯度下降方法搜索,直到起始位置.由此得到一条从起始位置到目标位置的最短路径.
+		\end{itemize}	
+	\epsilon
+		\end{itemize}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 局部规划的目标是跟踪全局规划器输出的全局规划,依据机器人的动态特性和周围障碍物的特征,生成控制机器人运动的速度指令.
+		\vspace{0.5cm}
+		\item 其实现过程为:
+		\begin{itemize}
+			\item 速度采样:在机器人的速度空间(线速度/角速度)中离散地采样.
+			\item 轨迹生成:对每个样本,在机器人当前状态的基础上推演未来很短一段时间内的运动轨迹. 
+			%根据速度采样的样本,机器人当前的状态,以及设置的很短一段时间,前向模拟出一条运动轨迹.
+			\item 轨迹评分:根据发生碰撞的可能性/目标点的接近程度/全局轨迹的跟踪近似度/速度限制等多方面的评价指标对这些轨迹打分,
+			选取得分最高的轨迹,将其对应的指令下发给底盘,控制机器人运动.
+		\end{itemize}
+	\end{itemize}
+\end{columns}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%templete%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\end{comment}
+\begin{frame}
+\frametitle{分支定界方法 \hfill \includegraphics[height=0.5cm]{logo.png}}
+\begin{columns}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 
+		\vspace{0.2cm}
+		\item 
+	\end{itemize}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 
+		\vspace{0.5cm}
+		\item
+	\end{itemize}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%templete%%%%%%%%%%%%%%%%%%%%%

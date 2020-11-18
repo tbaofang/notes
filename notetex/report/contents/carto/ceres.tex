@@ -1,0 +1,151 @@
+\section{ceres}
+
+\begin{frame}
+\frametitle{ceres库 \hfill \includegraphics[trim=0 0 0 0 0.1,height=0.5cm,clip]{logo.png}}
+
+Ceres库主要用于求解无约束或者有约束的最小二乘问题.其数学形式如下:
+
+\begin{equation}
+	\frac{1}{2} \sum_i 
+\end{equation}
+
+
+http://gaoyichao.com/Xiaotu/?book=Cartographer%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB&title=%E5%9F%BA%E4%BA%8ECeres%E5%BA%93%E7%9A%84%E6%89%AB%E6%8F%8F%E5%8C%B9%E9%85%8D%E5%99%A8
+\end{frame}
+
+
+\begin{comment}
+
+\end{comment}
+\begin{frame}
+\frametitle{ceres \hfill \includegraphics[height=0.5cm]{logo.png}}
+
+
+\end{frame}
+
+\begin{comment}
+\end{comment}
+\begin{frame}[fragile]
+\frametitle{Ceres \hfill \includegraphics[height=0.5cm]{logo.png}}
+\begin{columns}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item Ceres库主要用于求解无约束或者有约束的最小二乘问题.其数学形式如下:
+
+		
+		\begin{equation}\label{eq:ceres}
+		\begin{split}
+		& \mathop{\min}_{x} \frac{1}{2} \sum_i \rho_i(\| f_i(x_1, ..., x_k) \|^2) \\
+		& s.t. \ \ \ l_j \leq x_j \leq u_j \\
+		\end{split}
+		\end{equation}
+		\vspace{0.2cm}
+		\item 在Ceres库中,优化参数$x_1, ..., x_k$被称为{\color{red}参数块(ParameterBlock)},他们的取值就是我们要寻找的解.
+		$l_j, u_j$分别是第$j$个优化参数$x_j$的下界和上界.
+		表达式$\rho_i(\| f_i(x_1, ..., x_k) \|^2)$被称为{\color{red}残差项(ResidualBlock)}.
+		其中,$f(\cdot)$是{\color{red}代价函数(CostFunction)},$\rho_i(\cdot)$是关于代价函数平方的{\color{red}核函数(LossFunction)}.
+		核函数存在的意义主要是为了降低野点(outliners)对解的影响.
+	\end{itemize}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 很多时候最小二乘是拿来做曲线拟合的,实际上只要能够把问题描述成式\ref{eq:ceres}的形式,就可以使用Ceres来求解.
+		使用方法如下边示例代码所示.
+		%一般需要定义三个对象,problem用于描述将要求解的问题,options提供了很多配置项,summary用于记录求解过程.
+\vspace{0.3cm}
+\begin{lstlisting}[frame=shadowbox]  
+ceres::Problem problem;
+ceres::Solver::Options options;
+ceres::Solver::Summary summary;
+\end{lstlisting}
+
+		\item 然后,可以想下边那样通过problem对象的接口AddResidualBlock描述各个残差项的计算方式.
+		这个接口有三个参数,都是通过指针的形式提供对象.
+		%针对每个残差项,都需要提供一个代价函数以及核函数对象,
+		%而params则是所有残差项共有的,就是我们希望优化的参数.
+\begin{lstlisting}[frame=shadowbox]		
+problem.AddResidualBlock(cost_function_1, loss_function_1, params);
+......
+problem.AddResidualBlock(cost_function_n, loss_function_n, params);
+\end{lstlisting}
+
+	\end{itemize}
+
+\end{columns}
+\end{frame}
+
+\begin{comment}
+\end{comment}
+\begin{frame}[fragile]
+\frametitle{Ceres \hfill \includegraphics[height=0.5cm]{logo.png}}
+\begin{columns}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 关于cost\_function,除了要提供代价函数的计算方法外,还要明确其求导方法.
+		求导方法完全可以以仿函数的形式自己定义一个,但更多时候都在使用Ceres提供的AutoDifferentCostFunction进行求导.
+		所以,经常可以看到类似下面示例的调用方法.
+		%类AutoDiffCostFunction是一个模板类,其模板参数类表中的CostFunction是计算残差项代价的仿函数类型,
+		%m是CostFunction所提供的残差项数量,n则是优化参数的数量.
+		%仿函数技巧的一个优点,它能利用对象的成员变量来存储更多的函数内部参数.
+\begin{columns}	
+	\column{0.8\textwidth}
+	\begin{minipage}{6.5cm}
+        \begin{lstlisting}[frame=shadowbox]  
+problem.AddResidualBlock(new ceres::AutoDiffCostFunction<CostFunction, m, n>(
+    new CostFunction(/*构造参数*/)), loss_function, params);
+        \end{lstlisting}
+	\end{minipage}
+\end{columns}
+
+		\item 代价函数本身的计算,要求以仿函数的形式提供一个重载运算符"()"的类,并在该重载中完成代价的计算,如右边示例:
+		\vspace{0.2cm}
+	\end{itemize}
+	\column{0.5\textwidth}
+
+\begin{columns}	
+\column{0.7\textwidth}
+\begin{minipage}{5cm}
+\begin{lstlisting}[frame=shadowbox]  
+class CostFunction {
+public: 
+    template <typename T>
+    bool operation()(cost T* const params, T* cost) const {
+        // 必要的运算之后,更新各个cost
+        cost[0] = value_0;
+        ......
+        cost[m] = value_m;
+        return true;
+    }
+}
+\end{lstlisting}
+\end{minipage}
+\end{columns}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%templete%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\end{comment}
+\begin{frame}[fragile]
+\frametitle{分支定界方法 \hfill \includegraphics[height=0.5cm]{logo.png}}
+\begin{columns}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 
+		\vspace{0.2cm}
+	\end{itemize}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item 
+\begin{columns}	
+	\column{0.8\textwidth}
+	\begin{minipage}{6.5cm}
+		\begin{lstlisting}[frame=shadowbox]  
+		\end{lstlisting}
+	\end{minipage}
+\end{columns}
+	\end{itemize}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%templete%%%%%%%%%%%%%%%%%%%%%
+

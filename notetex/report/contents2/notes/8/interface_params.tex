@@ -1,0 +1,232 @@
+
+% \chapter{低成本导航系统接口设计}
+
+% \section{已经完成的模块}
+
+% \section{各个模块整合成系统}
+
+
+% \part{sss}
+\chapter{定位模块---AMCL}
+\section{主要接口}
+
+\subsection{amcl\_node}
+
+\begin{enumerate}
+  \item AMCL的入口函数:
+  \begin{lstlisting}[language={c++}]
+    Amcl::Amcl(std::string cfg_fname, std::shared_ptr<CommonData> cdata) 
+  \end{lstlisting}
+  
+  其中参数列表中的第一个参数说明了amcl配置参数路径,第二个参数包含了amcl需要用到的数据,比如激光扫描数据,里程计数据.
+
+  该函数完成地图数据的读取,同时开启两个子线程分布处理激光数据和里程计的数据:
+
+  \begin{lstlisting}[language={c++}]
+    laser_process_thread_ = new std::thread([&]{runLaserThread();}); 
+    odom_process_thread_ = new std::thread([&]{runOdomThread();});
+  \end{lstlisting}
+
+  \item 雷达数据处理接口
+  \begin{lstlisting}
+    void Amcl::runLaserThread()
+  \end{lstlisting}
+  
+  \item 里程计数据处理接口
+  \begin{lstlisting}
+    void Amcl::runOdomThread()
+  \end{lstlisting}
+  
+\end{enumerate}
+
+% \subsection{amcl\_sensor}
+
+
+
+
+\section{参数配置}
+
+\begin{table}[h]
+  % \Large  
+  \caption{粒子滤波配置}  
+  \begin{center}  
+  \begin{tabular}{|l|l|l|p{8cm}|}  
+  \hline  
+  参数名称 & 数据类型 & 默认值 & 说明  \\ \hline  
+  min\_particles & int & 100 & 粒子滤波器使用的最小粒子数量。 \\ \hline  
+  max\_particles & int & 500 & 粒子滤波器使用的最大粒子数量。 \\  \hline  
+  kld\_err & double & 0.01 & 真实分布与估计分布之间的最大误差。 \\  \hline  
+  kld\_z & double & 0.99 & 上标准分位数（1-p），其中p是估计分布上误差小于kld\_err的概率。 \\  \hline  
+  update\_min\_d & double & 0.2 & 执行一次滤波器更新所需的最小位移。 \\  \hline  
+  update\_min\_a & double & $\frac{\pi}{6}$ & 执行一次滤波器更新所需的最小转角。 \\  \hline  
+  resample\_interval & int & 2 & 重采样间隔。 \\  \hline  
+  transform\_tolerance & double & 0.1 & 重采样间隔。 \\  \hline  
+  recovery\_alpha\_slow & double & 0.0 & 慢速平均权重滤波器(slow average weight filter)的指数衰减速率，用于确定添加随机位姿的时机，以达到recover的目的。 \\  \hline  
+  recovery\_alpha\_fast & double & 0.0 & 快速平均权重滤波器(fast average weight filter)的指数衰减速率，用于确定添加随机位姿的时机，以达到recover的目的。 \\  \hline  
+  initial\_pose\_x & double & 0.0 & 初始位姿中心的x分量，用作初始位姿的高斯分布的均值。 \\  \hline  
+  initial\_pose\_y & double & 0.0 & 初始位姿中心的y分量，用作初始位姿的高斯分布的均值。 \\  \hline  
+  \end{tabular}  
+  \end{center}  
+  \end{table}  
+
+  \begin{table}[th]
+    % \Large  
+    \caption{粒子滤波配置(续)}  
+    \begin{center}  
+    \begin{tabular}{|l|l|l|p{8cm}|}  
+    \hline  
+    参数名称 & 数据类型 & 默认值 & 说明  \\ \hline  
+    
+
+    initial\_pose\_a & double & 0.0 & 初始方向角，用作初始位姿的高斯分布的均值。 \\  \hline  
+    initial\_cov\_xx & double & 0/25 & 初始位姿方差(x*x)，用作初始位姿的高斯分布的协方差矩阵。 \\  \hline  
+    initial\_cov\_yy & double & 0.25 & 初始位姿方差(y*y)，用作初始位姿的高斯分布的协方差矩阵。 \\  \hline 
+    initial\_cov\_aa & double & $\frac{\pi}{12} * \frac{\pi}{12}$ & 初始方向角方差(a*a)，用作初始位姿的高斯分布的协方差矩阵。 \\  \hline  
+    % gui\_publish\_rate & double & -1 & 发布扫描数据和路径到可视化界面的最大频率，-1关闭此功能。 \\  \hline  
+    % save\_pose\_rate & double & 0.5 & 保存最近一次估计的位姿和协方差到参数服务器中的最大频率。 \\  \hline  
+    % use\_map\_topic & bool & false & 该参数为真时，amcl将订阅一个map主题来接收地图数据。否则通过请求map\_server的服务来获取地图数据。 \\  \hline  
+    % first\_map\_only & bool & false & 该参数为真时，amcl将只使用所订阅主题的第一帧地图数据进行定位，而不再更新地图。 \\  \hline  
+    \end{tabular}  
+    \end{center}  
+    \end{table} 
+
+    \begin{table}[th]
+      % \Large  
+      \caption{雷达模型配置}  
+      \begin{center}  
+      \begin{tabular}{|p{4.5cm}|p{1.1cm}|l|p{6cm}|}  
+      \hline  
+      参数名称 & 数据类型 & 默认值 & 说明  \\ \hline  
+      laser\_min\_range & double & -1.0 & 激光扫描的最小距离，该值为-1时，amcl将使用激光传感器上报数据中的最小值。 \\  \hline  
+      laser\_max\_range & double & -1.0 & 激光扫描的最大距离，该值为-1时，amcl将使用激光传感器上报数据中的最大值。 \\  \hline  
+      laser\_max\_beams & double & 30 & 更新滤波器的时候，使用激光扫描束的间隔。一方面可以减少计算量，另一方面也是因为临近的激光数据之间也不是独立的。 \\  \hline  
+      laser\_z\_hit & double & 0.95 & 传感器模型中的z\_hit部分的混合权重。 \\  \hline  
+      laser\_z\_short & double & 0.1 & 传感器模型中的z\_short部分的混合权重。 \\  \hline  
+      laser\_z\_max & double & 0.05 & 传感器模型中的z\_max部分的混合权重。 \\  \hline  
+      laser\_z\_rand & double & 0.05 & 传感器模型中的z\_rand部分的混合权重。 \\  \hline  
+      laser\_sigma\_hit & double & 0.2 & z\_hit部分的高斯标准差。 \\  \hline  
+      laser\_lambda\_short & double & 0.1 & z\_short部分的指数衰减系数。 \\  \hline  
+      laser\_likelihood\_max\_dist & double & 2.0 & 似然场模型中，对障碍物膨胀的最大距离。 \\  \hline  
+      laser\_model\_type & string & likelihood\_field & 激光传感器模型。 \\  \hline  
+ 
+      \end{tabular}  
+      \end{center}  
+      \end{table} 
+
+\begin{table}[th]
+% \Large  
+\caption{雷达模型配置}  
+\begin{center}  
+\begin{tabular}{|p{4.5cm}|p{1.1cm}|l|p{6cm}|}  
+\hline  
+参数名称 & 数据类型 & 默认值 & 说明  \\ \hline  
+laser\_min\_range & double & -1.0 & 激光扫描的最小距离，该值为-1时，amcl将使用激光传感器上报数据中的最小值。 \\  \hline  
+laser\_max\_range & double & -1.0 & 激光扫描的最大距离，该值为-1时，amcl将使用激光传感器上报数据中的最大值。 \\  \hline  
+laser\_max\_beams & double & 30 & 更新滤波器的时候，使用激光扫描束的间隔。一方面可以减少计算量，另一方面也是因为临近的激光数据之间也不是独立的。 \\  \hline  
+laser\_z\_hit & double & 0.95 & 传感器模型中的z\_hit部分的混合权重。 \\  \hline  
+laser\_z\_short & double & 0.1 & 传感器模型中的z\_short部分的混合权重。 \\  \hline  
+laser\_z\_max & double & 0.05 & 传感器模型中的z\_max部分的混合权重。 \\  \hline  
+laser\_z\_rand & double & 0.05 & 传感器模型中的z\_rand部分的混合权重。 \\  \hline  
+laser\_sigma\_hit & double & 0.2 & z\_hit部分的高斯标准差。 \\  \hline  
+laser\_lambda\_short & double & 0.1 & z\_short部分的指数衰减系数。 \\  \hline  
+laser\_likelihood\_max\_dist & double & 2.0 & 似然场模型中，对障碍物膨胀的最大距离。 \\  \hline  
+laser\_model\_type & string & likelihood\_field & 激光传感器模型。 \\  \hline  
+\end{tabular}  
+\end{center}  
+\end{table} 
+
+\begin{table}[th]
+  % \Large  
+  \caption{雷达模型配置}  
+  \begin{center}  
+  \begin{tabular}{|p{4.5cm}|p{1.1cm}|l|p{6cm}|}  
+  \hline  
+  参数名称 & 数据类型 & 默认值 & 说明  \\ \hline  
+  odom\_model\_type & string & diff & 里程计模型类型。 \\  \hline  
+  odom\_alpha1 & double & 0.2 & 机器人运动模型中，旋转部分的旋转期望噪声。 \\  \hline  
+  odom\_alpha2 & double & 0.2 & 机器人运动模型的平移部分的旋转期望噪声。 \\  \hline  
+  odom\_alpha3 & double & 0.2 & 机器人运动模型的平移部分的平移期望噪声。 \\  \hline  
+  odom\_alpha4 & double & 0.2 & 机器人运动模型的旋转部分的平移期望噪声。 \\  \hline  
+  odom\_alpha5 & double & 0.2 & 平移相关的噪声参数。 \\  \hline  
+  % odom\_frame_id & double &  & 。 \\  \hline  
+  % base\_frame_id & double &  & 。 \\  \hline  
+  % global_frame_id & double &  & 。 \\  \hline  
+  % tf_broadcast & double &  & 。 \\  \hline  
+
+  \end{tabular}  
+  \end{center}  
+  \end{table} 
+
+  \chapter{避障模块---DWA}
+
+  \section{主要接口}
+
+  dwa是局部规划的接口,它定义在dwa.h中,包含了四个接口函数:
+
+  \begin{lstlisting}
+    bool computeVelocityCommands(bros::geometry_msgs::Twist& cmd_vel);
+    bool isGoalReached();
+    bool setPlan(const std::vector<bros::geometry_msgs::PoseStamped>& orig_global_plan);
+    void initialize(bros::geometry_msgs::Twist* global_vel);
+  \end{lstlisting}
+
+  其中:
+  \begin{itemize}
+    \item computeVelocityCommands: 通过该接口获取局部规划器输出的机器人控制速度指令.
+    \item isGoalReached: 用于判定是否到达目标点.
+    \item setPlan: 用于设定全局规划的路径.
+    \item initialize: 用于初始化局部规划器.
+  \end{itemize}
+
+  \section{参数配置}
+
+  \begin{table}[th]
+    % \Large  
+    \caption{DWA配置参数}  
+    \begin{center}  
+    \begin{tabular}{|l|l|l|p{8cm}|}  
+    \hline  
+    参数名称 & 数据类型 & 默认值 & 说明  \\ \hline  
+    acc\_lim\_x & double & 2.5 & 机器人在x方向的加速度极限。 \\  \hline  
+    acc\_lim\_y & double & 2.5 & 机器人在y方向的速度极限。 \\  \hline  
+    acc\_lim\_th & double & 3.2 & 机器人的角加速度极限。 \\  \hline  
+    max\_trans\_vel & double & 0.55 & 机器人最大平移速度的绝对值。 \\  \hline  
+    min\_trans\_vel & double & 0.1 & 机器人最小平移速度的绝对值。 \\  \hline  
+    max\_vel\_x & double & 0.55 & 机器人在x方向到最大速度。 \\  \hline  
+    min\_vel\_x & double & 0.0 & 机器人在x方向到最小速度。 \\  \hline  
+    max\_vel\_y & double & 0.1 & 机器人在y方向到最大速度。 \\  \hline  
+    min\_vel\_y & double & -0.1 & 机器人在y方向到最小速度。 \\  \hline  
+    max\_rot\_vel & double & 1.0 & 机器人的最大角速度的绝对值。 \\  \hline  
+    min\_rot\_x & double & 0.0 & 机器人的最小角速度的绝对值。 \\  \hline  
+    
+  
+    \end{tabular}  
+    \end{center}  
+    \end{table} 
+
+
+    \begin{table}[th]
+      % \Large  
+      \caption{DWA配置参数(续)}  
+      \begin{center}  
+      \begin{tabular}{|l|l|l|p{8cm}|}  
+      \hline  
+      参数名称 & 数据类型 & 默认值 & 说明  \\ \hline  
+      yaw\_goal\_tolerance & double & 0.05 & 达到目标时弧度偏差。 \\  \hline  
+      xy\_goal\_tolerance & double & 0.1 & 达到目标时x/y轴的偏差。 \\  \hline  
+      sim\_time & double & 1.7 & 前向模拟轨迹的时间。 \\  \hline  
+      sim\_granularity & double & 0.025 & 给定轨迹上的点之间的间隔尺寸。 \\  \hline  
+      vx\_samples & int & 20 & x方向速度的样本数。 \\  \hline  
+      vy\_samples & int & 10 & y方向速度的样本数。 \\  \hline  
+      vth\_samples & int & 20 & 角速度的样本数。 \\  \hline  
+      path\_distance\_bias & double & 32.0 & 贴近全局路径权重。 \\  \hline  
+      goal\_distance\_bias & double & 24.0 & 到达目标点的权重。 \\  \hline  
+      occdist\_scale & double & 0.01 & 远离障碍物的权重。 \\  \hline  
+    
+      \end{tabular}  
+      \end{center}  
+      \end{table} 
+
+
+
+

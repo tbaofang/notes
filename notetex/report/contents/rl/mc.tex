@@ -1,0 +1,26 @@
+\section{蒙特卡洛方法}
+
+\begin{frame}
+  \frametitle{基于模型的强化学习问题}
+  \begin{itemize}
+    \item 基于模型的强化学习问题,模型状态转移概率矩阵$P$是已知的，即MDP已知。
+    \item 强化学习的两个问题定义为：
+    \begin{enumerate}
+      \item 预测问题---给定强化学习6个要素：状态集$S$，动作集$A$，模型状态转移概率矩阵$P$，即时奖励$R$，衰减因子$\gamma$，给定策略$\pi$。求解该策略的状态价值函数$v(\pi)$。
+      \item 控制问题---给定强化学习5个要素：状态集$S$，动作集$A$，模型状态转移概率矩阵$P$，即时奖励$R$，衰减因子$\gamma$。求解最优的状态价值函数$v_*$和最优策略$\pi$。
+    \end{enumerate}
+    
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{不基于模型的强化学习问题}
+  \begin{itemize}
+    \item 有更多强化学习问题，我们没有办法实现得到模型的状态转移概率矩阵$P$，这时如果仍然需要求解强化学习问题，那么这就是不基于模型的强化学习问题了。
+    \item 它的两个问题一般定义为：
+    \begin{enumerate}
+      \item 预测问题---给定强化学习5个要素：状态集$S$，动作集$A$，即时奖励$R$，衰减因子$\gamma$，给定策略$\pi$。求解该策略的状态价值函数$v(\pi)$。
+      \item 控制问题---给定强化学习5个要素：状态集$S$，动作集$A$，即时奖励$R$，衰减因子$\gamma$，探索率$\epsilon$。求解最优的状态价值函数$v_*$和最优策略$\pi$。
+    \end{enumerate}
+  \end{itemize}
+\end{frame}

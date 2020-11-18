@@ -1,0 +1,96 @@
+\section{Cartographer}
+% \begin{frame}{参数配置}
+%   AMCL关于odom的参数配置列表（以差速模型为例）:
+
+%   % \frametitle{表格}
+%   \begin{table}[htbp!]
+%     \centering
+%     % \caption{}
+%     \begin{tabular}{c|c|c}
+%       \toprule[1pt]
+%       参数	& 默认值 & 描述  \\
+%       \toprule[1pt]
+%       odom\_model\_type	& diff & 里程计运动模型，种类有diff、ommi等 \\
+%  	    \hline
+%       odom\_alpha1	&  0.2 & 机器人旋转分量中的旋转噪声 \\
+%       \hline
+%       odom\_alpha2	&  0.2 & 机器人平移分量中的旋转噪声 \\
+%       \hline
+%       odom\_alpha3	&  0.2 & 机器人平移分量中的平移噪声 \\
+%       \hline
+%       odom\_alpha4	&  0.2 & 机器人旋转分量中的平移噪声 \\
+%  	    \bottomrule[1pt]
+%     \end{tabular}
+%   \end{table}
+% \end{frame}
+
+\begin{frame}{CostFunction}
+Ceres提供的CostFunction包括以下三种：
+
+\begin{itemize}
+  \item 自动导数（AutoDiffCostFunction）：由ceres自行决定导数的计算方式
+  \item 数值导数（NumericDiffCostFunction）：由用户手动编写导数的数值求解形式，
+        通常在残差函数的计算使用无法直接调用的库函数，无法调用AutoDiffCostFunction类构建时使用。
+  \item 解析导数（Analytic Derivatives）：当导数存在闭合解析形式时使用，用于可基于CostFunciton基类自行编写；
+        但由于需要自行管理残差和雅克比矩阵，除非闭合解具有具有明显的精度和效率优势。
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  
+  \frametitle{AutoDiffCostFunction}
+
+  以AutoDiffCostFunction为例说明,其构造函数为：
+
+   % \begin{lstlisting}[title=Myfile, frame=shadowbox]
+  \begin{lstlisting}[frame=shadowbox]
+    ceres::AutoDiffCostFunction<CostFunctor, int residualDim, int paramDim> (CostFunctor* functor);
+  \end{lstlisting}
+
+  \begin{itemize}
+    \item 模板参数依次为仿函数（functor）类型CostFunctor，残差维数residualDim和参数维数paramDim，接受参数类型为仿函数指针CostFunctor*。
+    \item 仿函数CostFunctor：仿函数的本质为结构体struct或者类class，由于重载了()运算符，使得其能够具有和函数一样的调用行为，因此被称为仿函数。
+  \end{itemize}
+  
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{迭代器分类标签}
+  \begin{lstlisting}[title= carto/mapping/2d/xy\_index.h, frame=shadowbox]
+    class XYIndexRangeIterator: public std::iterator<std::input_iterator_tag, Eigen::Array2i>
+  \end{lstlisting}
+  五种迭代器分类:
+
+  \begin{itemize}
+    \item input\_iterator\_tag 对应 InputIterator
+    \item output\_iterator\_tag 对应 OutputIterator
+    \item forward\_iterator\_tag 对应 ForwardIterator
+    \item bidirectional\_iterator\_tag 对应 BidirectionalIterator
+    \item random\_access\_iterator\_tag 对应 RandomAccessIterator
+  \end{itemize}
+
+  迭代器分类标签可以用以标示某个迭代器的分类，可以根据这一分类所要求的特性来选择最优算法。
+\end{frame}
+
+\begin{frame}
+  \frametitle{std::lower\_bound, std::upper\_bound}
+  \begin{itemize}
+    \item std::lower\_bound(first，last，val) 在first和last中的前闭后开区间进行二分查找，返回大于或等于val的第一个元素位置。
+      如果所有元素都小于val，则返回last的位置。
+    \item std::upper\_bound(first, last, val) 返回的在前闭后开区间查找的关键字的上界，返回大于val的第一个元素位置。
+    \item std::binary\_search(first, last, val) 返回的是是否存在这么一个数，是一个bool值。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{tuple}
+  tuple是一个固定大小的不同类型值的集合。
+  \begin{itemize}
+    \item std::tie 它会创建一个元组的左值引用同时可以解包tuple。
+    \item std::ignore 通过占位符来表示不解某个位置的值。
+    \item std::forward\_as\_tuple 创建右值的引用元组。
+    \item std::tuple\_element  获取元素类型。
+  \end{itemize}
+  
+\end{frame}

@@ -1,0 +1,78 @@
+
+
+constexpr是C++11中新增的关键字，其语义是“常量表达式”，也就是在编译期可求值的表达式。
+
+std::numeric\_limits::min() 返回的是编译器定义的最小的双精度浮点数。
+
+std::numeric\_limits::epsilon() 运行编译程序的计算机所能识别的最小非零浮点数。
+
+std::mt19937 相对于传统的srand()，std::mt19937拥有更好的性能。
+
+std::uniform_real_distribution 产生均匀分布的随机数。
+
+
+
+Eigen::Matrix<T, 3, 1>::UnitX 
+
+
+vector 的reserve增加了vector的capacity，但是它的size没有改变！而resize改变了vector的capacity同时也增加了它的size
+
+reserve是容器预留空间，但在空间内不真正创建元素对象，所以在没有添加新的对象之前，不能引用容器内的元素。加入新的元素时，要调用push_back()/insert()函数。
+
+resize是改变容器的大小，且在创建对象，因此，调用这个函数之后，就可以引用容器内的对象了，因此当加入新的元素时，用operator[]操作符，或者用迭代器来引用元素对象。
+此时再调用push_back()函数，是加在这个新的空间后面的。
+
+push_back()函数向容器中加入一个临时对象（右值元素）时， 首先会调用构造函数生成这个对象，然后条用拷贝构造函数将这个对象放入容器中， 最后释放临时对象。
+但是emplace_back()函数向容器中中加入临时对象， 临时对象原地构造，没有赋值或移动的操作。
+
+
+std::transform在指定的范围内应用于给定的操作，并将结果存储在指定的另一个范围内。要使用std::transform函数需要包含<algorithm>头文件。
+
+std::back_inserter用于在末尾插入元素。
+
+
+explicit构造函数:
+
+\begin{itemize}
+  \item 将构造函数声明为explicit 来阻止类类型隐式转换
+  \item 关键字explicit 只对一个实参的构造函数有效
+  \item explicit 构造函数只能用于直接初始化
+  \item 在类内声明构造函数时使用explicit 关键字，在类外部定义时不应重复
+\end{itemize}
+
+std::forward_as_tuple() 通过内部元素,使用右值引用构造的形式.
+
+decltype: 有时我们希望从表达式的类型推断出要定义的变量类型，但是不想用该表达式的值初始化变量（初始化可以用auto）。为了满足这一需求，
+C++11新标准引入了decltype类型说明符，它的作用是选择并返回操作数的数据类型，在此过程中，编译器分析表达式并得到它的类型，却不实际计算表达式的值。
+
+decltype和auto都可以用来推断类型，但是二者有几处明显的差异：
+
+\begin{itemize}
+  \item auto忽略顶层const，decltype保留顶层const；
+  \item 对引用操作，auto推断出原有类型，decltype推断出引用；
+  \item 对解引用操作，auto推断出原有类型，decltype推断出引用；
+  \item auto推断时会实际执行，decltype不会执行，只做分析。总之在使用中过程中和const、引用和指针结合时需要特别小心。
+\end{itemize}
+
+迭代器的下一个或上一个分别用std::next和std::prev获取.
+
+
+int t=std::lower_bound(a+l,a+r,m)-a  在升序排列的a数组内二分查找[l,r)区间内的值为m的元素。返回m在数组中的下标。
+
+
+GUARDED_BY(mutex_) : 
+guarded_by属性是为了保证线程安全，使用该属性后，线程要使用相应变量，必须先锁定mutex_
+
+for (const Eigen::Vector3f& point : *this) ??
+
+enum class 和 enum struct
+
+\begin{itemize}
+  \item enum class 和 enum struct 是等价的
+  \item 使用enum class \enum struct不会与现存的enum关键词冲突。而且enum class \enum struct具有更好的类型安全和类似封装的特性（scoped nature）。
+  \item 与整形之间不会发生隐式类型转换，但是可以强转。
+  \item 默认的底层数据类型是int，用户可以通过：type（冒号+类型）来指定任何整形（除了wchar_t）作为底层数据类型。
+  \item 引入了域，要通过域运算符访问，不可以直接通过枚举体成员名来访问
+\end{itemize}
+
+

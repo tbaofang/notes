@@ -1,0 +1,129 @@
+\section{c++}
+
+\begin{frame}
+\frametitle{explicit关键字}
+\begin{enumerate}
+	\item 只能修饰一个关键字的构造函数,表明该类构造函数是显示的,而非隐式的,跟它相对应的另一个关键字是implicit, 意思是隐藏的,类构造函数默认情况下即声明为implicit(隐式).
+	\item 如果的构造函数只有一个参数时, 那么在编译的时候就会有一个缺省的转换操作:将该{\color{red}构造函数对应数据类型的数据转换为该类对象}.
+	\item explicit关键字的作用就是{\color{red}阻止类构造函数的隐式自动转换}.
+	\item explicit关键字只对有一个参数的类构造函数有效, 如果类构造函数参数大于或等于两个时, 是不会产生隐式转换的, 所以explicit关键字也就无效了.
+	\item 但是, 也有一个例外, 就是当除了第一个参数以外的其他参数都有默认值的时候, explicit关键字依然有效, 此时, 当调用构造函数时只传入一个参数, 等效于只有一个参数的类构造函数
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{智能指针}
+\begin{itemize}
+	\item 动态内存管理是通过new/delete 运算符来进行的。由于确保在正确的时间释放内存是很困难的，为了避免内存泄漏，更加容易，安全地使用动态内存，C++11标准库提供了两种智能指针类型来管理动态对象。智能指针的行为类似于常规指针，重要的区别是它负责自动释放所指的对象。
+	\begin{enumerate}
+		\item std::shared\_ptr ,  允许多个指针指向同一个对象
+		\item std::unique\_ptr， 独占所指向的对象
+	\end{enumerate}
+	\item std::unique\_ptr 是 c++11中用来取代 std::auto\_ptr 指针的指针容器. 它不能与其他unique\_ptr类型的指针对象共享所指对象的内存.这种所有权仅能够通过std::move函数来转移.unique\_ptr是一个删除了拷贝构造函数、保留了移动构造函数的指针封装类型.
+	\item 调用release 会切断unique\_ptr 和它原来管理的对象的联系。release 返回的指针通常被用来初始化另一个智能指针或给另一个智能指针赋值.如果不用另一个智能指针来保存release返回的指针，程序就要负责资源的释放
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{algorithm}
+\begin{enumerate}
+	\item std::min\_element()
+	\item std::max\_element()
+	\item std::minmax()
+	\item std::accumulate()
+	\item std::to\_string()
+	\item std::atomic()
+	\begin{itemize}
+		\item std::atomic对int, char, bool等数据结构进行原子性封装，在多线程环境中，对std::atomic对象的访问不会造成竞争-冒险。利用std::atomic可实现数据结构的无锁设计。
+		\item std::atomic对象的值的读取和写入可使用load和store实现.
+	\end{itemize}
+	\item std::this\_thread::yield()
+	\begin{itemize}
+		\item 当前线程放弃执行，操作系统调度另一线程继续执行。即当前线程将未使用完的“CPU时间片”让给其他线程使用，等其他线程使用完后再与其他线程一起竞争"CPU"。
+	\end{itemize}
+	\item std::this\_thread::sleep\_for()
+	\begin{itemize}
+		\item 表示当前线程休眠一段时间，休眠期间不与其他线程竞争CPU，根据线程需求，等待若干时间。
+	\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{C++11内存模型}
+C++11引入了多线程，同时也引入了一套内存模型。从而提供了比较完善的一套多线程体系。在单线程时代，一切都很简单。没有共享数据，没有乱序执行，所有的指令的执行都是按照预定的时间线。但是也正是因为这个强的同步关系，给CPU提供的优化程度也就相对低了很多。无法体现当今多核CPU的性能。因此需要弱化这个强的同步关系，来增加CPU的性能优化。\href{https://www.cnblogs.com/navono007/p/5746048.html}{(参考)}
+
+C++11提供了6种内存模型：
+\begin{enumerate}
+	\item memory\_order\_relaxed
+	\item memory\_order\_consume
+	\item memory\_order\_acquire
+	\item memory\_order\_release
+	\item memory\_order\_acq\_rel
+	\item memory\_order\_seq\_cst
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{C++11内存模型}
+原子类型的操作可以指定上述6种模型的中的一种，用来控制同步以及对执行序列的约束。从而也引起两个重要的问题：
+\begin{enumerate}
+	\item 哪些原子类型操作需要使用内存模型？
+	\item 内存模型定义了哪些同步语义（synchronization ）和执行序列约束（ordering constraints）？
+\end{enumerate}
+
+原子操作可分为3大类：
+\begin{enumerate}
+	\item 读操作：memory\_order\_acquire, memory\_order\_consume
+	\item 写操作：memory\_order\_release ）
+	\item 读-修改-写操作：memory\_order\_acq\_rel, memory\_order\_seq\_cst
+	\item 未被列入分类的memory\_order\_relaxed没有定义任何同步语义和顺序一致性约束
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{C++11内存模型}
+ C++11中有3种不同类型的同步语义和执行序列约束：
+\begin{enumerate}
+	\item 顺序一致性（Sequential consistency）：对应的内存模型是memory\_order\_seq\_cst
+	\item 请求-释放（Acquire-release）：对应的内存模型是memory\_order\_consume，memory\_order\_acquire，memory\_order\_release，memory\_order\_acq\_rel
+	\item 松散型（非严格约束。Relaxed）：对应的内存模型是memory\_order\_relaxed
+\end{enumerate}
+
+下面对上述3种约束做一个大概解释：
+\begin{enumerate}
+	\item Sequential consistency：指明的是在线程间，建立一个全局的执行序列
+	\item Acquire-release：在线程间的同一个原子变量的读和写操作上建立一个执行序列
+	\item Relaxed：只保证在同一个线程内，同一个原子变量的操作的执行序列不会被重排序（reorder），这种保证也称之为modification order consistency，但是其他线程看到的这些操作的执行序列式不同的。
+	\item 还有一种consume模式，也就是std::memory\_order\_consume。这个模式主要是引入了原子变量的数据依赖。
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{GUARDED\_BY 和EXCLUDES属性字}
+
+
+这些都是在Clang Thread Safety Analysis（线程安全分析）中定义的属性，Clang Thread Safety Analysis是C ++语言扩展，它警告代码中潜在的竞争条件。分析是完全静态的（即编译时）；没有运行时开销。该分析仍在积极开发中，但已经足够成熟，可以在工业环境中进行部署。它是由Google与CERT / SEI合作开发的，并广泛用于Google的内部代码库中。
+\begin{itemize}
+	\item GUARDED\_BY是{\color{red}数据成员}的属性，该属性声明数据成员受给定功能保护。{\color{red}对数据的读操作需要共享访问，而写操作则需要互斥访问}。
+该GUARDED\_BY属性声明线程必须先锁定listener\_list\_mutex才能对其进行读写listener\_list，从而确保增量和减量操作是原子的.
+	\item EXCLUDES是{\color{red}函数或方法}的属性，该属性声明调用方不拥有给定的功能。该注释{\color{red}用于防止死锁}。许多互斥量实现都不是可重入的，因此，如果函数第二次获取互斥量，则可能发生死锁。
+在上面代码中的EXCLUDES表示的意思是：调用listener\_disconnect()函数的调用用不能拥有listener\_list\_mutex锁。
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{content}
+\begin{itemize}
+	\item mutable 关键字: mutable 是为了突破 const 的限制而设置的。可以用来修饰一个类的成员变量。被 mutable 修饰的变量，将永远处于可变的状态，即使是 const 函数中也可以改变这个变量的值。
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
