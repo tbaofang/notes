@@ -20,15 +20,5 @@ $$
 
 ---
 
-预积分的离散形式
 
-这里使用mid-point方法,即两个相邻时刻k到k+1的位姿是用两个时刻的测量值$\alpha, w$的平均值来计算:
 
-$$
-\begin{aligned}
-  w &= \frac{1}{2}((w^{b_k} - b^g_k) + (w^{b_{k+1}} - b^g_k)) \\
-  q_{bib_{k+1}} &= q_{b_i b_k} \otimes \begin{bmatrix}
-    1 \\ \frac{1}{2} w
-  \end{bmatrix}
-\end{aligned}
-$$

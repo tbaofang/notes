@@ -14,3 +14,6 @@
 
 
 [学堂在线]https://www.xuetangx.com
+
+[旋转矩阵导数](https://www.zhihu.com/question/309464739)
+[旋转矩阵求导](https://zhuanlan.zhihu.com/p/156895046)
