@@ -29,7 +29,7 @@
 
 ---  
 
-思考
+
 
 陀螺仪的G-sensitivity
 
