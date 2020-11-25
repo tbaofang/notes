@@ -1,0 +1,6 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{旋转运动学}{4}{0}{1}
+\beamer@sectionintoc {2}{IMU测量模型}{10}{0}{2}
+\beamer@subsectionintoc {2}{1}{加速度计测量原理}{11}{0}{2}
+\beamer@subsectionintoc {2}{2}{陀螺仪的测量原理}{11}{0}{2}
+\beamer@sectionintoc {3}{近期IMU应用中的问题及解决}{15}{0}{3}
