@@ -57,7 +57,7 @@
     
     \column{0.8\textwidth}
     \begin{itemize}
-      \item 旋转矩阵是一个正交矩阵.它的行列式为1,且每个列向量都是单位向量且相互正交,它的逆等于它的转置.
+      \item 旋转矩阵是一个行列式为1的正交矩阵.且每个列向量都是单位向量且相互正交,它的逆等于它的转置.
       % \item 旋转矩阵求导:
       % \begin{equation}
       %   \begin{split}
@@ -74,6 +74,14 @@
           &\approx R_{ib} [w^b]^\land  \\
           & = [R_{ib}w^b]^\land R_{ib} \\
           & = [w^i]^\land R_{ib}
+        \end{split}
+      \end{equation} 
+
+      \item 旋转矩阵求导2:
+      \begin{equation}
+        \begin{split}
+          \dot{R}(t)R(t)^T &= \phi(t)^\land \\
+          \dot{R}(t) &= \phi(t)^\land R(t) \\
         \end{split}
       \end{equation} 
 
@@ -179,7 +187,7 @@
         \begin{split}
           \ddot{r} &= R_{ib} \dot{v}^b + \dot{R}_{ib} v^b +  [w^i]^\land \dot{r}^i + [\dot{R}_{ib} w^b + R_{ib}\dot{w}^b]^\land r^i  \\ 
           &= R_{ib}\dot{v}^b + \dot{R}_{ib} v^b + [w^i]^\land \dot{r}^i +  [R_{ib}\dot{w}^b]^\land r^i  \\ 
-          &= R_{ib} a^b + [w^i]^\land v^i + [w^i]^\land[v^i+(w^i]^\land r^i) + []\dot{w}^i]^\land r^i \\ 
+          &= R_{ib} a^b + [w^i]^\land v^i + [w^i]^\land (v^i+[w^i]^\land r^i) + [\dot{w}^i]^\land r^i \\ 
           &= R_{ib} a^b + 2[w^i]^\land v^i + [w^i]^\land([w^i]^\land r^i) + [\dot{w}^i]^\land r^i \\
           \Rightarrow a^i &= a - \begin{matrix}
           \underbrace{2[w^i]^\land v^i}\\ Coriolis \ force
