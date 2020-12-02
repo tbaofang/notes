@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.12.9)  25 NOV 2020 15:43
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.12.9)  25 NOV 2020 16:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1931,7 +1931,13 @@ File: xunicode-extra.def 2018/02/27 v3.6.1 extra definition for xunicode
 .................................................
  (/usr/share/texlive/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg
 File: xeCJK.cfg 2018/02/27 v3.6.1 Configuration file for xeCJK package
-)) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerfontthemeserif.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerthemeDarmstadt.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemesmoothbars.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty)) (/usr/share/texlive/texmf-dist/tex/latex/animate/animate.sty
+))
+
+Package hyperref Warning: Option `backref' has already been used,
+(hyperref)                setting the option has no effect on input line 10.
+
+Package hyperref Info: Option `colorlinks' set `true' on input line 10.
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerfontthemeserif.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerthemeDarmstadt.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemesmoothbars.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty)) (/usr/share/texlive/texmf-dist/tex/latex/animate/animate.sty
 Package: animate 2018/02/28 PDF animations from files and inline graphics
  (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
@@ -2379,7 +2385,7 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box121
-Package hyperref Info: Link coloring OFF on input line 240.
+Package hyperref Info: Link coloring ON on input line 240.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -2563,7 +2569,7 @@ File: ./pics/11_2.png Graphic file (type bmp)
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
 
-Overfull \vbox (0.90901pt too high) detected at line 121
+Overfull \vbox (0.90901pt too high) detected at line 129
  []
 
 [7
@@ -2572,7 +2578,7 @@ Overfull \vbox (0.90901pt too high) detected at line 121
 File: ./pics/11_3.png Graphic file (type bmp)
 <./pics/11_3.png>
 
-Overfull \hbox (29.23566pt too wide) in paragraph at lines 161--161
+Overfull \hbox (29.23566pt too wide) in paragraph at lines 169--169
  [] 
  []
 
@@ -2729,7 +2735,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  44642 strings out of 493007
  871693 string characters out of 6136719
- 1127099 words of memory out of 5000000
+ 1128326 words of memory out of 5000000
  47812 multiletter control sequences out of 15000+600000
  576399 words of font info for 103 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
