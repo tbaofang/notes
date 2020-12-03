@@ -1,0 +1,167 @@
+\section{IMU随机误差模型及标定}
+
+\begin{comment}
+\end{comment}
+\begin{frame}
+\frametitle{IMU随机误差分类 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+\begin{columns}
+  \column{0.1\textwidth}
+  
+	\column{0.6\textwidth}
+	\begin{enumerate}
+		\item {\color{red}高斯白噪声} \quad		
+		IMU数据连续时间上受到一个均值为0,方差为$\sigma$,各时刻之间相互独立的高斯过程$n(t)$:
+
+\begin{equation}
+  \begin{split}
+    & E[n(t)] = 0 \\
+    & E[n(t_1)n(t_2)] = \sigma^2 \delta(t1-t2)
+  \end{split}
+\end{equation}
+
+其中,$\delta()$表示狄拉克函数.
+
+	\item {\color{red}Bias随机游走}
+	通常用维纳过程(wiener process)来建模bias随时间连续变化的过程,离散时间下称之为随机游走.
+
+\begin{equation}
+  \dot{b}(t) = n_b(t) = \sigma_b w(t)
+\end{equation}
+
+其中,$ w$是方差为1的白噪声.
+
+
+\end{enumerate}
+  
+问题:实际上,IMU传感器产生的原始数据是连续的,而输出数据是离散的,离散和连续高斯白噪声存在何种关系?
+
+  % \column{0.3\textwidth}
+	% \begin{figure}[h]
+	% 	\includegraphics[trim=1.5 0 0 0, height=3.5cm,clip]{11_0.png}
+	% 	% \caption{四个区域搜索空间}
+  % \end{figure}
+  
+	\column{0.1\textwidth}
+
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{高斯白噪声的离散化 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+  \begin{columns}
+    \column{0.1\textwidth}
+    
+    \column{0.8\textwidth}
+
+    只考虑高斯白噪声的积分
+    \begin{equation}
+      n_d[k] \triangleq n(t_0 + \Delta t) \simeq \frac{1}{\Delta t} \int ^{t_0+\Delta t}_{t_0} n(t) dt
+    \end{equation}
+
+    协方差为:
+    \begin{equation}
+      \begin{split}
+        E(n^2_d[k]) &= E(\frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} n(\tau) n(t))d\tau dt \\
+        &= \frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} E(n(\tau) n(t))d\tau dt \\
+        &= \frac{\sigma^2}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} \delta(t-\tau)d\tau dt \\
+        &= \frac{\sigma^2}{\Delta t}        
+      \end{split}
+    \end{equation}
+    
+    \column{0.1\textwidth}
+  
+  \end{columns}
+  \end{frame}   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{高斯白噪声的离散化 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+  \begin{columns}
+    \column{0.1\textwidth}
+    
+    \column{0.8\textwidth}
+
+    只考虑高斯白噪声的积分
+    \begin{equation}
+      n_d[k] \triangleq n(t_0 + \Delta t) \simeq \frac{1}{\Delta t} \int ^{t_0+\Delta t}_{t_0} n(t) dt
+    \end{equation}
+
+    协方差为:
+    \begin{equation}
+      \begin{split}
+        E(n^2_d[k]) &= E(\frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} n(\tau) n(t))d\tau dt \\
+        &= \frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} E(n(\tau) n(t))d\tau dt \\
+        &= \frac{\sigma^2}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} \delta(t-\tau)d\tau dt \\
+        &= \frac{\sigma^2}{\Delta t}        
+      \end{split}
+    \end{equation}
+    
+    \column{0.1\textwidth}
+  
+  \end{columns}
+  \end{frame}     
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{高斯白噪声的离散化 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+  \begin{columns}
+    \column{0.1\textwidth}
+    
+    \column{0.8\textwidth}
+
+    只考虑高斯白噪声的积分
+    \begin{equation}
+      n_d[k] \triangleq n(t_0 + \Delta t) \simeq \frac{1}{\Delta t} \int ^{t_0+\Delta t}_{t_0} n(t) dt
+    \end{equation}
+
+    协方差为:
+    \begin{equation}
+      \begin{split}
+        E(n^2_d[k]) &= E(\frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} n(\tau) n(t))d\tau dt \\
+        &= \frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} E(n(\tau) n(t))d\tau dt \\
+        &= \frac{\sigma^2}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} \delta(t-\tau)d\tau dt \\
+        &= \frac{\sigma^2}{\Delta t}        
+      \end{split}
+    \end{equation}
+    
+    \column{0.1\textwidth}
+  
+  \end{columns}
+  \end{frame}    
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{高斯白噪声的离散化 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+  \begin{columns}
+    \column{0.1\textwidth}
+    
+    \column{0.8\textwidth}
+
+    只考虑高斯白噪声的积分
+    \begin{equation}
+      n_d[k] \triangleq n(t_0 + \Delta t) \simeq \frac{1}{\Delta t} \int ^{t_0+\Delta t}_{t_0} n(t) dt
+    \end{equation}
+
+    协方差为:
+    \begin{equation}
+      \begin{split}
+        E(n^2_d[k]) &= E(\frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} n(\tau) n(t))d\tau dt \\
+        &= \frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} E(n(\tau) n(t))d\tau dt \\
+        &= \frac{\sigma^2}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} \delta(t-\tau)d\tau dt \\
+        &= \frac{\sigma^2}{\Delta t}        
+      \end{split}
+    \end{equation}
+    
+    \column{0.1\textwidth}
+  
+  \end{columns}
+  \end{frame}    
+
+
+ 

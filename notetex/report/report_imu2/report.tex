@@ -1,0 +1,309 @@
+% !Mode::"TeX:UTF-8"
+% !Mode:: "TeX:UTF-8"
+% \documentclass[xcolor=svgnames,table,10pt]{beamer}
+\documentclass[10pt,aspectratio=43,mathserif]{beamer} 
+\usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.3,debug]{beamerposter}
+\usepackage{xeCJK}
+
+
+% \hypersetup{backref,pdfpagemode=FullScreen,colorlinks=true}
+
+% 默认的数学公式较难看，使用serif可以使得公式的样式变为常用latex的公式样式 
+\mode<presentation>{
+% Setup appearance:
+\usefonttheme[onlymath]{serif} 
+\useoutertheme{infolines}
+\usetheme{Darmstadt}
+% \usetheme{Berlin} %主题
+% \usetheme{Singapore}
+
+\setbeamercovered{transparent}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{enumerate items}[circle]
+
+% 修改样式
+\setbeamercolor{box}{bg=black!20!orange,fg=white}
+\setbeamercolor{block title}{use=sidebar,fg=sidebar.fg!10!white,bg=orange!70!black}
+\setbeamercolor{block title example}{use=sidebar,fg=sidebar.fg!10!white,bg=black!60!green}
+\setbeamercolor{block title alerted}{use=sidebar,fg=sidebar.fg!10!white,bg=black!50!red}
+
+\setbeamertemplate{headline}
+{%
+  \begin{beamercolorbox}[shadow=true]{section in head/foot}
+  \vskip2pt\insertnavigation{\paperwidth}\vskip2pt
+  \end{beamercolorbox}%
+}
+}
+
+\usepackage{url}
+\usepackage{animate}
+\usepackage[english]{babel}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{multirow,multicol,longtable}
+\usepackage{graphics}
+\usepackage{xcolor}
+% \usepackage[no-math]{fontspec}%-------------------------------------------------- 提供字体选择命令
+% \usepackage{xunicode}%----------------------------------------------------------- 提供Unicode字符宏
+% \usepackage{xltxtra}%------------------------------------------------------------ 提供了针对XeTeX的改进并且加入了XeTeX的LOGO
+% \usepackage[BoldFont,SlantFont,CJKchecksingle]{xeCJK}%--------------------------- 使用xeCJK宏包
+%================================== 设置中文字体 ================================%
+% \setCJKmainfont{Adobe Heiti Std}%------------------------------------------------设置正文为黑体
+% \setCJKmonofont{Adobe Song Std}%-------------------------------------------------设置等距字体
+% \setCJKsansfont{Adobe Kaiti Std}%------------------------------------------------设置无衬线字体
+% \setCJKfamilyfont{zxzt}{FZShouJinShu-S10S}
+% \setCJKfamilyfont{FZDH}{FZDaHei-B02S}
+%================================== 设置中文字体 ================================%
+% \hypersetup{backref,pdfpagemode=FullScreen,colorlinks=true}
+% \hypersetup{pdfpagemode=FullScreen,colorlinks=true}
+
+%================================== 设置英文字体 ================================%
+% \setmainfont[Mapping=tex-text]{Times New Roman}%--------------------------------英文衬线字体
+% \setsansfont[Mapping=tex-text]{Arial}%------------------------------------英文无衬线字体
+% \setmonofont[Mapping=tex-text]{Courier New}%-------------------------------------英文等宽字体
+% \newfontfamily\Arial{Arial}
+%================================== 设置英文字体 ================================%
+
+%================================== 设置数学字体 ================================%
+%\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+%================================== 设置数学字体 ================================%
+
+\punctstyle{kaiming}%------------------------------------------------------------ 开明式标点格式
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning,backgrounds}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{calc}
+\usetikzlibrary{shadings}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+\usepackage{xifthen}
+\usepackage{colortbl,dcolumn}
+\usepackage{enumerate}
+\usepackage{pifont}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[]{hyperref}
+
+% %代码设置
+% \usepackage{listings}
+% \usepackage{ctex}
+
+% \lstset{
+%     basicstyle          =   \sffamily,          % 基本代码风格
+%     keywordstyle        =   \bfseries,          % 关键字风格
+%     commentstyle        =   \rmfamily\itshape,  % 注释的风格，斜体
+%     stringstyle         =   \ttfamily,  % 字符串风格
+%     flexiblecolumns,                % 别问为什么，加上这个
+%     numbers             =   left,   % 行号的位置在左边
+%     showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+%     numberstyle         =   \zihao{-5}\ttfamily,    % 行号的样式，小五号，tt等宽字体
+%     showstringspaces    =   false,
+%     captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+%     frame               =   lrtb,   % 显示边框
+% }
+
+% \lstdefinestyle{Python}{
+%     language        =   Python, % 语言选Python
+%     basicstyle      =   \zihao{-5}\ttfamily,
+%     numberstyle     =   \zihao{-5}\ttfamily,
+%     keywordstyle    =   \color{blue},
+%     keywordstyle    =   [2] \color{teal},
+%     stringstyle     =   \color{magenta},
+%     commentstyle    =   \color{red}\ttfamily,
+%     breaklines      =   true,   % 自动换行，建议不要写太长的行
+%     columns         =   fixed,  % 如果不加这一句，字间距就不固定，很丑，必须加
+%     basewidth       =   0.5em,
+% }
+
+%代码设置
+\usepackage{fancybox}
+\usepackage{color,xcolor}
+\usepackage{times}
+\usepackage{listings}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\newcommand{\Console}{Console}
+\lstset{ %
+	backgroundcolor=\color{white},   % choose the background color
+	basicstyle=\footnotesize\rmfamily,     % size of fonts used for the code
+	columns=fullflexible,
+	breaklines=true,                 % automatic line breaking only at whitespace
+	captionpos=b,                    % sets the caption-position to bottom
+	tabsize=4,
+	commentstyle=\color{mygreen},    % comment style
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	keywordstyle=\color{blue},       % keyword style
+	stringstyle=\color{mymauve}\ttfamily,     % string literal style
+	numbers=left, 
+%	frame=single,
+	rulesepcolor=\color{red!20!green!20!blue!20},
+	% identifierstyle=\color{red},
+	language=c
+}
+
+% \usepackage[linesnumbered,ruled,lined]{algorithm2e}
+% \usepackage{algorithm}  
+% \usepackage{algorithmicx}  
+% \usepackage{algpseudocode}
+% \floatname{algorithm}{算法}
+% \renewcommand{\algorithmicrequire}{\textbf{输入:}} 
+% \renewcommand{\algorithmicensure}{\textbf{输出:}}  
+% \algrenewcommand{\algorithmiccomment}[1]{ $//$ #1}
+
+\usepackage{algorithm}  
+\usepackage{algpseudocode}  
+\usepackage{amsmath}  
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm  
+
+
+%=================================== 数学符号 =================================%
+\newcommand{\rtn}{\mathrm{\mathbf{R}}}
+\newcommand{\N}{\mathrm{\mathbf{N}}}
+\newcommand{\As}{\mathrm{a.s.}}
+\newcommand{\Ae}{\mathrm{a.e.}}
+\newcommand*{\PR}{\mathrm{\mathbf{P}}}
+\newcommand*{\EX}{\mathrm{\mathbf{E}}}
+\newcommand{\EXlr}[1]{\mathrm{\mathbf{E}}\left[#1\right]}
+\newcommand*{\dif}{\,\mathrm{d}}
+\newcommand*{\F}{\mathcal{F}}
+\newcommand*{\h}{\mathcal{H}}
+\newcommand*{\vp}{\varepsilon}
+\newcommand*{\prs}{\dif\PR-\As}
+\newcommand*{\dte}{\dif t-\Ae}
+\newcommand*{\pts}{\dif\PR\times\dif t-\Ae}
+\newcommand{\Ito}{It\^{o}}
+\newcommand{\tT}[1][0]{[#1,T]}
+\newcommand{\intT}[2][T]{\int^{#1}_{#2}}
+\newcommand{\intTe}[1][t]{\intT[t+\varepsilon]{#1}}
+\newcommand{\s}{\mathcal{S}}
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\one}[1]{{\bf 1}_{#1}}
+\renewcommand{\M}{{\rm M}}
+\newcommand{\Me}[1][t]{M^{\varepsilon}_{#1}}
+\newcommand{\Ne}[1][t]{N^{\varepsilon}_{#1}}
+\newcommand{\Pe}[1][t]{P^{\varepsilon}_{#1}}
+\DeclareMathOperator*{\sgn}{sgn}
+% =================================== 数学符号 =================================%
+
+% 定义罗马数字
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% 定义破折号
+\newcommand{\pozhehao}{\kern0.3ex\rule[0.8ex]{2em}{0.1ex}\kern0.3ex}
+% 中文日期
+\def\CJK@today{\the\year 年 \the\month 月 \the\day 日}
+\newcommand\zhtoday{\CJK@today}
+
+% 中文图表
+\renewcommand\figurename{图}
+\renewcommand\tablename{表}
+
+\usepackage{verbatim}
+
+\usepackage[timeinterval=1]{tdclock}
+
+%\usepackage[colorlinks,linkcolor=red]{hyperref}
+
+
+
+\graphicspath{{./pics/}}
+
+
+\title{IMU应用讲解(第二期)}
+
+
+%\author[博智林机器人]{}
+\author{唐宝芳 \ 李文涛 \ 肖斯凯}
+
+% \institute[LSEC,AMSS,CAS]{\includegraphics[height=1cm]{logo.jpg}}
+
+\date{\zhtoday}
+%\date[\initclock\mmddyyyy\tddate\ \ \hhmmss\tdtime]{\today}
+
+\setlength{\baselineskip}{22pt}
+\renewcommand{\baselinestretch}{1.4}
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{1ex}%------------------------------------------ 公式前的距离
+\setlength{\belowdisplayskip}{1ex}%------------------------------------------ 公式后的距离
+
+% 一般第一页显示PPT标题以及作者信息
+\begin{frame}
+	\title{IMU应用讲解(第二期)}
+	% \subtitle {--组会报告}
+	\author{唐宝芳 \ 李文涛 \ 肖斯凯} % 显示作者
+	% \institute {UCAS} % 设置学院机构
+	% \date{\today}  % 显示日期
+\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{主要内容}
+  \frametitle{主要内容 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+	
+	\tableofcontents[hideallsubsections]
+  \addtocounter{framenumber}{-1}  %目录页不计算页码
+\end{frame}
+% -----------------------------------------------------------
+% \AtBeginSection[] { 
+%   \begin{frame}
+% 		\frametitle{主要内容} 
+% 		\frametitle{主要内容 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+
+% 		\tableofcontents[currentsection,hideothersubsections] 
+		
+% 		% \end(columns)
+% 	\end{frame} 
+	
+%   \addtocounter{framenumber}{-1}  %目录页不计算页码
+% }
+% -----------------------------------------------------------
+% \begin{frame}\frametitle{Outline}
+% 	\tableofcontents[part=1,pausesections]
+% \end{frame}
+
+
+% \input{contents/01_IMU应用讲解计划.tex}
+\input{contents/11_IMU误差模型.tex}
+\input{contents/12_IMU确定性误差标定.tex}
+\input{contents/21_IMU随机误差模型.tex}
+
+\input{contents/reference.tex}
+
+% \input{contents/21_IMU标定.tex}
+% \input{contents/22_IMU测量模型.tex}
+% \input{contents/31_IMU应用中的问题及解决.tex}
+
+
+
+% \begin{frame}[plain]{}
+%   \begin{center}
+%     \begin{tikzpicture}
+%       \node[above,xscale=1.2,yscale=1.2]{\Huge 欢迎批评指正！};
+%     \end{tikzpicture}
+%   \end{center}
+% \end{frame}
+% -----------------------------------------------------------
+% \begin{frame}[plain]{}
+%   \begin{center}
+%     \begin{tikzpicture}
+%       \node[above,xscale=1.2,yscale=1.2]{\Huge {\color{red}{讨论一波嗨!!!}}};
+%     \end{tikzpicture}
+%   \end{center}
+% \end{frame}
+
+% {\color{red}第一期:旋转运动学 ;\quad IMU测量模型}
+
+\end{document}

@@ -1,0 +1,35 @@
+\frametitle{近期IMU应用中的问题及解决(二) \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+  \begin{columns}
+    \column{0.1\textwidth}
+
+    \column{0.8\textwidth}
+      \begin{lstlisting}[frame=shadowbox]
+        void ImuCallback(const sensor_msgs::ImuConstPtr& msg)
+        {
+          static int nums = 0;
+          static Eigen::Vector3d calibr_sum;
+          if(++nums > 500)
+            return;
+          if(nums <= 500)
+          {
+            std::unique_ptr<cartographer::sensor::ImuData> imu_data = ToImuData(msg);
+            const Eigen::Quaterniond rotation = Eigen::Quaterniond::FromTwoVectors(
+              imu_data->linear_acceleration, Eigen::Vector3d{0, 0, -9.8});
+            Eigen::Vector3d calibr = cartographer::transform::RotationQuaternionToAngleAxisVector(rotation);
+            calibr_sum += calibr;
+          }
+          if(nums == 500)
+              std::cout << "[rpy:]" << calibr_sum / 500 << std::endl;
+        }
+      \end{lstlisting}
+
+
+    % \column{0.3\textwidth}
+    % \begin{figure}[h]
+    %   \includegraphics[trim=1.5 0 0 0, height=3.5cm,clip]{12_1.png}
+    %   % \caption{四个区域搜索空间}
+    % \end{figure}
+
+    \column{0.1\textwidth}
+
+  \end{columns}

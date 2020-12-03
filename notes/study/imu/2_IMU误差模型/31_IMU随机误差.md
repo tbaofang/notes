@@ -97,7 +97,11 @@ $$
   bias随机游走的噪声方差从连续时间到离散之间需要乘以$\sqrt{\Delta t}$
 
 
----
-参考:
 
-Sigma-point Kalman filtering for integrated GPS and inertial navigation
+
+
+
+
+
+
+
