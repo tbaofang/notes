@@ -3,20 +3,20 @@
 \begin{comment}
 \end{comment}
 \begin{frame}
-\frametitle{确定性误差标定 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+\frametitle{确定性误差标定(六面法) \hfill \includegraphics[height=0.5cm]{00_logo.png}}
 \begin{columns}
   \column{0.1\textwidth}
   
   \column{0.8\textwidth}
-  六面法标定加速度计Bias/Scale和Nonorthogonality.
+  % 六面法标定加速度计Bias/Scale和Nonorthogonality.
 
   六面法:将加速度计的3个轴分别朝上或朝下水平放置一段时间,采集6个面的数据完成标定.
 	\begin{enumerate}
 		\item 如果各个轴是正交的,那么很容易得到bias和scale:
 		\begin{equation}
       \begin{split}
-          &b = \frac{l^{up}_f + l^{down}_f}{2} \\
-          & S = \frac{l^{up}_f - l^{down}_f}{2 \cdot ||g||}
+          &b = \frac{l^{up}_z + l^{down}_z}{2} \\
+          & s = \frac{l^{up}_z - l^{down}_z}{2 \cdot ||g||}
       \end{split}
     \end{equation}
 
@@ -40,7 +40,7 @@
 \begin{comment}
 \end{comment}
 \begin{frame}
-\frametitle{确定性误差标定 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+\frametitle{确定性误差标定(六面法) \hfill \includegraphics[height=0.5cm]{00_logo.png}}
 \begin{columns}
   \column{0.1\textwidth}
   
@@ -120,12 +120,12 @@
 \begin{comment}
 \end{comment}
 \begin{frame}
-\frametitle{确定性误差标定 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+\frametitle{确定性误差标定(六面法) \hfill \includegraphics[height=0.5cm]{00_logo.png}}
 \begin{columns}
   \column{0.1\textwidth}
   
   \column{0.5\textwidth}
-  六面法标定陀螺Bias/Scale和Nonorthogonality.
+  六面法标定陀螺的bias,scale和misalignment.
   
   \begin{itemize}
     \item 和加速度计六面法不同的是,陀螺仪的真实值由高精度转台提供,这里的6面是指各个轴顺时针和逆时针旋转.
@@ -141,3 +141,5 @@
 
 \end{columns}
 \end{frame} 
+
+

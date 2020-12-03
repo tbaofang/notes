@@ -10,7 +10,7 @@
 	\column{0.6\textwidth}
 	\begin{itemize}
 		\item 加速度计和陀螺仪的误差可以分为:{\color{red}确定性误差}和{\color{red}随机误差}.
-		\item 确定性误差可以事先通过标定确定,包括:bias,scale,nonorthogonality...
+		\item 确定性误差可以事先通过标定确定,包括:bias,scale,misalignment...
 		\item 随机误差通常假设噪声服从高斯分布,包括:高斯白噪声,bias随机游走...
   \end{itemize}
   
@@ -28,7 +28,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{确定性误差 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+  \frametitle{确定性误差分类 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
   \begin{columns}
     \column{0.1\textwidth}
     
@@ -40,7 +40,7 @@
       \end{equation}
 
       \item Scale \quad scale可以看成是理论数值和输出值之间的比值,如下图所示.
-      \item Nonorthogonality/Misalignment Errors \quad 
+      \item Misalignment/Nonorthogonality Errors \quad 
       多轴IMU传感器制作的时候,由于制作工艺的问题,会使得xyz轴可能不垂直,如下图所示.
 
     \end{enumerate}

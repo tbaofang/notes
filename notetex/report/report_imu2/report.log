@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.12.9)  2 DEC 2020 22:29
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.12.9)  3 DEC 2020 11:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1931,7 +1931,13 @@ File: xunicode-extra.def 2018/02/27 v3.6.1 extra definition for xunicode
 .................................................
  (/usr/share/texlive/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg
 File: xeCJK.cfg 2018/02/27 v3.6.1 Configuration file for xeCJK package
-)) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerfontthemeserif.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerthemeDarmstadt.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemesmoothbars.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty)) (/usr/share/texlive/texmf-dist/tex/latex/animate/animate.sty
+))
+
+Package hyperref Warning: Option `backref' has already been used,
+(hyperref)                setting the option has no effect on input line 9.
+
+Package hyperref Info: Option `colorlinks' set `true' on input line 9.
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerfontthemeserif.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerthemeDarmstadt.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemesmoothbars.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty)) (/usr/share/texlive/texmf-dist/tex/latex/animate/animate.sty
 Package: animate 2018/02/28 PDF animations from files and inline graphics
  (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
@@ -2315,31 +2321,31 @@ Package: xeCJK-listings 2018/02/27 v3.6.1 xeCJK patch file for listings
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 237.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 237.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 238.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 238.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 238.
  (/usr/share/texmf/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 237.
+LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 238.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
@@ -2379,7 +2385,7 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box121
-Package hyperref Info: Link coloring OFF on input line 237.
+Package hyperref Info: Link coloring ON on input line 238.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -2387,9 +2393,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count410
 )
-LaTeX Info: Redefining \ref on input line 237.
-LaTeX Info: Redefining \pageref on input line 237.
-LaTeX Info: Redefining \nameref on input line 237.
+LaTeX Info: Redefining \ref on input line 238.
+LaTeX Info: Redefining \pageref on input line 238.
+LaTeX Info: Redefining \nameref on input line 238.
  (./report.out) (./report.out)
 \@outlinefile=\write6
 \openout6 = `report.out'.
@@ -2397,41 +2403,41 @@ LaTeX Info: Redefining \nameref on input line 237.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> T1/ptm/m/n on input line 237.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 237.
+(Font)                  OT1/cmr/m/n --> T1/ptm/m/n on input line 238.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/ptm/bx/n on input line 237.
+(Font)                  OT1/cmr/bx/n --> T1/ptm/bx/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/ptm/bx/n on input line 237.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 237.
+(Font)                  OT1/cmr/bx/n --> T1/ptm/bx/n on input line 238.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 237.
+(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 237.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 237.
+(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 238.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/ptm/m/it on input line 237.
+(Font)                  OT1/cmr/m/it --> T1/ptm/m/it on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/ptm/m/it on input line 237.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 237.
+(Font)                  OT1/cmr/bx/it --> T1/ptm/m/it on input line 238.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 237.
+(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 237.
+(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 238.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/ptm/m/n --> T1/ptm/bx/n on input line 237.
+(Font)                  T1/ptm/m/n --> T1/ptm/bx/n on input line 238.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/ptm/m/it --> T1/ptm/bx/it on input line 237.
+(Font)                  T1/ptm/m/it --> T1/ptm/bx/it on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/ptm/bx/n on input line 237.
+(Font)                  OT1/cmr/bx/n --> T1/ptm/bx/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/ptm/bx/n --> T1/ptm/bx/n on input line 237.
+(Font)                  T1/ptm/bx/n --> T1/ptm/bx/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/phv/m/n --> T1/phv/bx/n on input line 237.
+(Font)                  T1/phv/m/n --> T1/phv/bx/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/ptm/m/it --> T1/ptm/bx/it on input line 237.
+(Font)                  T1/ptm/m/it --> T1/ptm/bx/it on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/pcr/m/n --> T1/pcr/bx/n on input line 237.
+(Font)                  T1/pcr/m/n --> T1/pcr/bx/n on input line 238.
  (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -2452,67 +2458,67 @@ Dictionary: translator-theorem-dictionary, Language: English
 .................................................
 \symlegacymaths=\mathgroup8
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 237.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 237.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 237.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 237.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 237.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 237.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 237.
-LaTeX Font Info:    Redeclaring math accent \check on input line 237.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 237.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 237.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 237.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 237.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 237.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 238.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 238.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 238.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 238.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 238.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 238.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 238.
+LaTeX Font Info:    Redeclaring math accent \check on input line 238.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 238.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 238.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 238.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 238.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 238.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 237.
+(Font)              `operators' in the math version `normal' on input line 238.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/ptm/m/n on input line 237.
+(Font)                  OT1/cmr/m/n --> TU/ptm/m/n on input line 238.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 237.
+(Font)              `operators' in the math version `bold' on input line 238.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/ptm/m/n on input line 237.
+(Font)                  OT1/cmr/bx/n --> TU/ptm/m/n on input line 238.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/ptm/m/n --> TU/ptm/m/n on input line 237.
-LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 237.
+(Font)                  TU/ptm/m/n --> TU/ptm/m/n on input line 238.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  T1/ptm/m/it --> TU/ptm/m/it on input line 237.
+(Font)                  T1/ptm/m/it --> TU/ptm/m/it on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  T1/ptm/bx/n --> TU/ptm/bx/n on input line 237.
+(Font)                  T1/ptm/bx/n --> TU/ptm/bx/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  T1/phv/m/n --> TU/phv/m/n on input line 237.
+(Font)                  T1/phv/m/n --> TU/phv/m/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  T1/pcr/m/n --> TU/pcr/m/n on input line 237.
+(Font)                  T1/pcr/m/n --> TU/pcr/m/n on input line 238.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/ptm/m/n --> TU/ptm/bx/n on input line 237.
+(Font)                  TU/ptm/m/n --> TU/ptm/bx/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/ptm/bx/it --> TU/ptm/bx/it on input line 237.
+(Font)                  T1/ptm/bx/it --> TU/ptm/bx/it on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/phv/bx/n --> TU/phv/bx/n on input line 237.
+(Font)                  T1/phv/bx/n --> TU/phv/bx/n on input line 238.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/pcr/bx/n --> TU/pcr/bx/n on input line 237.
+(Font)                  T1/pcr/bx/n --> TU/pcr/bx/n on input line 238.
 \c@lstlisting=\count411
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \Pifont with sig. 'm' on line 237.
+. Redefining command \Pifont with sig. 'm' on line 238.
 .................................................
  (./report.nav)
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
-(hyperref)                setting the option has no effect on input line 250.
+(hyperref)                setting the option has no effect on input line 251.
 
 [1
 
@@ -2521,22 +2527,27 @@ File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
  [2
 
-] (./contents/11_IMU误差模型.tex
-LaTeX Font Info:    Calculating math sizes for size <7.46> on input line 26.
-LaTeX Font Info:    Try loading font information for TU+ptm on input line 26.
-LaTeX Font Info:    No file TUptm.fd. on input line 26.
+] (./contents/01_IMU应用讲解计划.tex
+LaTeX Font Info:    Calculating math sizes for size <7.46> on input line 28.
+LaTeX Font Info:    Try loading font information for TU+ptm on input line 28.
+LaTeX Font Info:    No file TUptm.fd. on input line 28.
 
 
 LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 26.
+(Font)              using `TU/lmr/m/n' instead on input line 28.
 
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 26.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 28.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
  [3
+
+]) (./contents/11_IMU误差模型.tex
+File: ./pics/00_logo.png Graphic file (type bmp)
+<./pics/00_logo.png>
+ [4
 
 ]
 File: ./pics/11_1.png Graphic file (type bmp)
@@ -2545,54 +2556,106 @@ File: ./pics/11_2.png Graphic file (type bmp)
 <./pics/11_2.png>
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
- [4
+ [5
 
 ]) (./contents/12_IMU确定性误差标定.tex
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
- [5
+ [6
 
 ]
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
- [6
+ [7
 
 ]
 File: ./pics/12_1.png Graphic file (type bmp)
 <./pics/12_1.png>
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
- [7
-
-]) (./contents/21_IMU随机误差模型.tex
-File: ./pics/00_logo.png Graphic file (type bmp)
-<./pics/00_logo.png>
  [8
 
-]
+]) (./contents/13_IMU确定性误差标定2.tex
+File: ./pics/13_1.png Graphic file (type bmp)
+<./pics/13_1.png>
+
+Overfull \hbox (49.25586pt too wide) in paragraph at lines 58--58
+ [] 
+ []
+
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
- [9
+[9
 
 ]
+File: ./pics/13_2.png Graphic file (type bmp)
+<./pics/13_2.png>
+
+Overfull \hbox (11.59108pt too wide) in paragraph at lines 91--91
+ [] 
+ []
+
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
- [10
+[10
 
 ]
+File: ./pics/13_3.png Graphic file (type bmp)
+<./pics/13_3.png>
+File: ./pics/13_4.png Graphic file (type bmp)
+<./pics/13_4.png>
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
  [11
 
-]
+]) (./contents/21_IMU随机误差模型.tex
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
  [12
 
-]) (./contents/reference.tex
+]
 File: ./pics/00_logo.png Graphic file (type bmp)
 <./pics/00_logo.png>
  [13
+
+]
+File: ./pics/00_logo.png Graphic file (type bmp)
+<./pics/00_logo.png>
+ [14
+
+]
+File: ./pics/00_logo.png Graphic file (type bmp)
+<./pics/00_logo.png>
+ [15
+
+]
+File: ./pics/00_logo.png Graphic file (type bmp)
+<./pics/00_logo.png>
+ [16
+
+]
+File: ./pics/00_logo.png Graphic file (type bmp)
+<./pics/00_logo.png>
+ [17
+
+]) (./contents/22_IMU随机误差标定.tex
+File: ./pics/00_logo.png Graphic file (type bmp)
+<./pics/00_logo.png>
+ [18
+
+]
+File: ./pics/22_2.png Graphic file (type bmp)
+<./pics/22_2.png>
+File: ./pics/22_3.png Graphic file (type bmp)
+<./pics/22_3.png>
+File: ./pics/00_logo.png Graphic file (type bmp)
+<./pics/00_logo.png>
+ [19
+
+]) (./contents/reference.tex
+File: ./pics/00_logo.png Graphic file (type bmp)
+<./pics/00_logo.png>
+ [20
 
 ])
 \tf@nav=\write7
@@ -2604,23 +2667,23 @@ File: ./pics/00_logo.png Graphic file (type bmp)
 \tf@snm=\write9
 \openout9 = `report.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 309.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 309.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
  (./report.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 309.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 309.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 313.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 313.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 44305 strings out of 493007
- 866030 string characters out of 6136719
- 1023046 words of memory out of 5000000
- 47518 multiletter control sequences out of 15000+600000
- 557558 words of font info for 67 fonts, out of 8000000 for 9000
+ 44383 strings out of 493007
+ 867703 string characters out of 6136719
+ 1027663 words of memory out of 5000000
+ 47580 multiletter control sequences out of 15000+600000
+ 559302 words of font info for 69 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 48i,26n,72p,10409b,885s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,26n,72p,10409b,994s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.pdf (13 pages).
+Output written on report.pdf (20 pages).

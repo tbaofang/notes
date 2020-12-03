@@ -62,6 +62,24 @@ $$
 $$
 
 ---
+
+即:
+
+$$
+  n_d[k] = \sigma w[k]
+$$
+
+其中,
+$$
+  \begin{aligned}
+    &w[k] \sim N(0, 1) \\
+    &\sigma_d = \sigma \frac{1}{\Delta t}
+  \end{aligned}
+$$
+    
+也就是说高斯白噪声的连续时间表示到离散时间表示相差一个 $\frac{1}{\Delta t}$,$\sqrt{\Delta t}$ 是传感器的采样时间.
+
+---
 bias随机游走的离散化
 
 提取bias积分部分
