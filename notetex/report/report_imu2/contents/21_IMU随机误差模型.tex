@@ -166,34 +166,34 @@
   \end{columns}
   \end{frame}    
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{高斯白噪声的离散化 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
-  \begin{columns}
-    \column{0.1\textwidth}
+% \begin{frame}
+%   \frametitle{高斯白噪声的离散化 \hfill \includegraphics[height=0.5cm]{00_logo.png}}
+%   \begin{columns}
+%     \column{0.1\textwidth}
     
-    \column{0.8\textwidth}
+%     \column{0.8\textwidth}
 
-    只考虑高斯白噪声的积分
-    \begin{equation}
-      n_d[k] \triangleq n(t_0 + \Delta t) \simeq \frac{1}{\Delta t} \int ^{t_0+\Delta t}_{t_0} n(t) dt
-    \end{equation}
+%     只考虑高斯白噪声的积分
+%     \begin{equation}
+%       n_d[k] \triangleq n(t_0 + \Delta t) \simeq \frac{1}{\Delta t} \int ^{t_0+\Delta t}_{t_0} n(t) dt
+%     \end{equation}
 
-    协方差为:
-    \begin{equation}
-      \begin{split}
-        E(n^2_d[k]) &= E(\frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} n(\tau) n(t))d\tau dt \\
-        &= \frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} E(n(\tau) n(t))d\tau dt \\
-        &= \frac{\sigma^2}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} \delta(t-\tau)d\tau dt \\
-        &= \frac{\sigma^2}{\Delta t}        
-      \end{split}
-    \end{equation}
+%     协方差为:
+%     \begin{equation}
+%       \begin{split}
+%         E(n^2_d[k]) &= E(\frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} n(\tau) n(t))d\tau dt \\
+%         &= \frac{1}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} E(n(\tau) n(t))d\tau dt \\
+%         &= \frac{\sigma^2}{\Delta t^2} \int ^{t_0+\Delta t}_{t_0} \int ^{t_0+\Delta t}_{t_0} \delta(t-\tau)d\tau dt \\
+%         &= \frac{\sigma^2}{\Delta t}        
+%       \end{split}
+%     \end{equation}
     
-    \column{0.1\textwidth}
+%     \column{0.1\textwidth}
   
-  \end{columns}
-  \end{frame}    
+%   \end{columns}
+%   \end{frame}    
 
 
  
